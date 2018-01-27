@@ -1,0 +1,57 @@
+% vim:ft=tex:
+%
+\documentclass[12pt]{article}
+
+\title{
+	Planning Polly
+}
+\author{
+	nitepone --- \texttt{luna@moon}
+}
+
+\begin{document}
+\maketitle
+
+\begin{tabular}{|l l|}
+	\hline
+	polling\_thread&\\
+	\hline
+	-pollable pollable  & A pollable object to be polling\\
+	-time int  & The time (in milliseconds) to wait between polling\\
+	-actions dict[matchable] & A dictionary of runables, with matchable keys\\
+	\hline
+
+\end{tabular}
+
+\begin{tabular}{|l l|}
+	\hline
+	pollable&\\
+	\hline
+	-command string & A command in string form to run\\
+	\hline
+	+poll() & Run command and return output\\
+	\hline
+\end{tabular}
+
+\begin{tabular}{|l l|}
+	\hline
+	runable&\\
+	\hline
+	-command string & A command in string form to run\\
+	\hline
+	+run() & Run command\\
+	\hline
+\end{tabular}
+
+\begin{tabular}{|l l|}
+	\hline
+	matchable&\\
+	\hline
+	-regex & A regex to match to output\\
+	\hline
+	+match(string) bool & See if a string matches the fed regex\\
+	\hline
+
+\end{tabular}
+
+\end{document}

@@ -1,0 +1,240 @@
+;Polybar Config
+;Semi-transparent
+;author: nitepone
+
+[colors]
+bg = #fdf6e3
+bgalt = #e4e4e4
+select = #e4e4e4
+fg = #657b83
+fgalt = #93a1a1
+red = #dc322f
+orange = #cb4b14
+yellow = #b58900
+green = #859900
+aqua = #2aa198
+blue = #268bd2
+purple = #6c71c4
+
+
+[global/wm]
+margin-bottom = 0
+
+
+[bar/bottom]
+monitor = eDP-1
+wm-name = bottombar
+width = 100%
+height = 32
+bottom = true
+padding-left = 2
+padding-right = 2
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+font-0 = sourcecodepro:size=11;3
+font-1 = FontAwesome:size=10;2
+font-2 = sourcecodepro:size=11:weight=bold;3
+
+;modules-margin-left =
+;modiles-margin-right =
+
+modules-left = i3
+modules-right = xwindow cpu memory wlan volume battery date
+
+tray-position = right
+;tray-padding =
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+label-background = ${colors.bg}
+label-padding = 1
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-padding = 0
+label-mode-foreground = ${colors.fg}
+label-mode-background = ${colors.bg}
+
+label-focused = %index%
+label-focused-font = 3
+label-focused-foreground = ${colors.bg}
+label-focused-background = ${colors.blue}
+label-focused-padding = 2
+
+label-unfocused = %index%
+label-unfocused-background = ${colors.bgalt}
+label-unfocused-font = 3
+label-unfocused-padding = 2
+
+label-visible = %index%
+label-visible-background = ${colors.select}
+label-visible-font = 3
+label-visible-padding = 2
+
+label-urgent = %index%
+label-urgent-font = 3
+label-urgent-foreground = ${colors.fg}
+label-urgent-background = ${colors.red}
+label-urgent-padding = 2
+
+
+[module/volume]
+type = internal/volume
+interval = 2
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-background = ${colors.bgalt}
+format-volume-padding = 1
+label-volume = %percentage%%
+label-volume-foreground = ${colors.fg}
+
+format-muted-foreground = ${colors.fgalt}
+format-muted-padding = 2
+label-muted = sound mute
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-padding = 1
+format-connected-background = ${colors.bg}
+label-connected = %essid% (%signal%)
+label-connected-foreground = ${colors.green}
+
+format-disconnected = <label-disconnected>
+format-disconnected-padding = 1
+format-disconnected-background = ${colors.bg}
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.red}
+
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = %b %d
+date-alt = %a, %b %d
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+label = %date% %time%
+label-background = ${colors.blue}
+label-foreground = ${colors.bg}
+label-font = 3
+label-padding = 2
+
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+
+format = <label> <bar-load>
+format-padding = 1
+format-background = ${colors.bg}
+label = CPU:
+
+bar-load-width = 6
+bar-load-foreground-0 = ${colors.green}
+bar-load-foreground-1 = ${colors.green}
+bar-load-foreground-2 = ${colors.green}
+bar-load-foreground-3 = ${colors.green}
+bar-load-foreground-4 = ${colors.yellow}
+bar-load-foreground-5 = ${colors.orange}
+bar-load-foreground-6 = ${colors.red}
+bar-load-gradient = false
+bar-load-indicator = |
+bar-load-indicator-font = 2
+bar-load-fill = ─
+bar-load-fill-font = 2
+bar-load-empty = ─
+bar-load-empty-font = 2
+bar-load-empty-foreground = ${colors.fgalt}
+
+
+[module/memory]
+type = internal/memory
+
+format = <label> <bar-used>
+format-padding = 1
+format-background = ${colors.bg}
+label = RAM:
+
+bar-used-width = 6
+bar-used-foreground-0 = ${colors.green}
+bar-used-foreground-1 = ${colors.green}
+bar-used-foreground-2 = ${colors.green}
+bar-used-foreground-3 = ${colors.green}
+bar-used-foreground-4 = ${colors.yellow}
+bar-used-foreground-5 = ${colors.orange}
+bar-used-foreground-6 = ${colors.red}
+bar-used-gradient = false
+bar-used-indicator = |
+bar-used-indicator-font = 2
+bar-used-fill = ─
+bar-used-fill-font = 2
+bar-used-empty = ─
+bar-used-empty-font = 2
+bar-used-empty-foreground = ${colors.fgalt}
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-background = ${colors.bgalt}
+format-charging-padding = 2
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-background = ${colors.bgalt}
+format-discharging-padding = 2
+
+format-full-prefix = 
+format-full-prefix-foreground = ${colors.fg}
+format-full-background = ${colors.bgalt}
+format-full-padding = 2
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = ${colors.yellow}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+ramp-capacity-foreground = ${colors.fg}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-foreground = ${colors.fg}
+animation-charging-framerate = 750
+
+
+[settings]
+screenchange-reload = true

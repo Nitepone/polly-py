@@ -70,7 +70,7 @@ class runable:
     Run the external command and return output
     """
     def execute(self):
-        return subprocess.getoutput(self.command)
+        return subprocess.getoutput(self.command,shell=True)
 
     def __str__(self):
         return self.command

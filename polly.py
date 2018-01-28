@@ -35,12 +35,14 @@ class polling_thread(threading.Thread):
                 for key in self.actions:
                     if key.search(currResponse):
                         print("New response "+str(currResponse)+" replaces "+
-                              str(currResponse)+" and we run "+str(actions(key)))
-                        actions(key).execute()
+                              str(currResponse)+" and we run "+
+                                str(self.actions[key]))
+                        self.actions[key].execute()
                         matchFound = True
                         break
                 if not matchFound:
-                    print("New response "+str(currResponse)+". No match found...")
+                    print("New response "+str(currResponse)+
+                          ". No match found...")
                 lastResponse = currResponse
             time.sleep(self.time)
 
@@ -98,13 +100,13 @@ def read(filename):
             if line.startswith("#") or line == "":
                 pass
             elif line.startswith("command:"):
-                currCommand = runable(line.replace("command:", ""))
+                currCommand = runable(line[8:].strip())
                 config[currCommand] = {}
             elif line.startswith("search:"):
-                currSearch = matchable(line.replace("match:", ""))
+                currSearch = matchable(line[7:].strip())
                 config[currCommand][currSearch] = None
             elif line.startswith("action:"):
-                currAction = runable(line.replace("action:", ""))
+                currAction = runable(line[7:].strip())
                 if config[currCommand][currSearch] == None:
                     config[currCommand][currSearch] = currAction
                 else:
